@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Team Info</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<!-- <a href="index.html" class="logo">
+									<span class="symbol"><img src="{% static 'images/logo.svg' %}" alt="" /></span><span class="title">Phantom</span>
+								</a> -->
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="/teams">Home</a></li>
+							<li><a href="/rankings">Team Rankings</a></li>
+							<li><a href="/trade_compare">Analyze Trade</a></li>
+							
+							<!-- <li><a href="generic.html">Tempus etiam</a></li> -->
+							<!-- <li><a href="generic.html">Consequat dolor</a></li> -->
+							<!-- <li><a href="elements.html">Elements</a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<section >
+								<h3>Team Rankings</h3>
+								<div style="margin:0em 2em 0em 0em">
+									<table>
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th nowrap="nowrap">Field Goal %</th>
+												<th nowrap="nowrap">Free Throw %</th>
+												<th nowrap="nowrap">Three Pointers Made</th>
+												<th nowrap="nowrap">Total Rebounds</th>
+												<th>Assists</th>
+												<th>Steals</th>
+												<th>Blocks</th>
+												<th>Turnovers</th>
+												<th>Points</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for rank in rankings %}
+											<tr>
+										      <td> {{ rank.0 }} </td>
+										      <td> {{ rank.1 }} </td>
+										      <td> {{ rank.2 }} </td>
+										      <td> {{ rank.3 }} </td>
+										      <td> {{ rank.4 }} </td>
+										      <td> {{ rank.5 }} </td>
+										      <td> {{ rank.6 }} </td>
+										      <td> {{ rank.7 }} </td>
+										      <td> {{ rank.8 }} </td>
+										      <td> {{ rank.9 }} </td>
+										      <td> {{ rank.10 }} </td>
+										    </tr>
+										   {% endfor %}
+										</tbody>
+										<!-- <tfoot>
+											<tr>
+												<td colspan="2"></td>
+												<td>100.00</td>
+											</tr>
+										</tfoot> -->
+									</table>
+								</div>
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="/send_email/">{% csrf_token %}
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://twitter.com/HowDeepArshdeep" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.instagram.com/howdeeparshdeep/" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+									<li><a href="https://github.com/arshsidhu" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li> -->
+									<!-- <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li> -->
+									<!-- <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Arsh and Jo Co. All rights reserved</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/browser.min.js' %}"></script>
+			<script src="{% static 'js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>

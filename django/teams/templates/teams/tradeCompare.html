@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% load staticfiles %}
+
+<html>
+	<head>
+		<title>Compare Trade</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<!-- <a href="index.html" class="logo">
+									<span class="symbol"><img src="{% static 'images/logo.svg' %}" alt="" /></span><span class="title">Phantom</span>
+								</a> -->
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="/teams">Home</a></li>
+							<li><a href="/rankings">Team Rankings</a></li>
+							<li><a href="/trade_compare">Analyze Trade</a></li>
+							<!-- <li><a href="generic.html">Tempus etiam</a></li> -->
+							<!-- <li><a href="generic.html">Consequat dolor</a></li> -->
+							<!-- <li><a href="elements.html">Elements</a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<section >
+								<form action="/analyze_trade/" method="post" id="tradeForm">
+									{% csrf_token %}
+									<div class="row gtr-uniform">
+										<div class="col-12">
+											<h3>Select Teams</h3>
+											<Label>Team 1</Label>
+											<select name="team_A_select" id="team_A_select">
+												<option value="">- Select Team 1 -</option>
+												{% for owner in owners %}
+												<option value="{{ owner.pk }}">{{ owner }}</option>
+												{% endfor %}
+											</select>
+											
+										</div>
+
+										<div class="col-12">
+											<Label>Select Punt(s)</Label>
+											<ul class="actions">
+												<li>
+													<input type="checkbox" id="punt_fg"><label for="punt_fg">FG</label> 
+													<input type="checkbox" id="punt_ft"><label for="punt_ft">FT</label> 
+													<input type="checkbox" id="punt_pts"><label for="punt_pts">PTS</label> 
+													<input type="checkbox" id="punt_3pm"><label for="punt_3pm">3PM</label> 
+													<input type="checkbox" id="punt_reb"><label for="punt_reb">REB</label> 
+													<input type="checkbox" id="punt_ast"><label for="punt_ast">AST</label> 
+													<input type="checkbox" id="punt_stl"><label for="punt_stl">STL</label> 
+													<input type="checkbox" id="punt_blk"><label for="punt_blk">BLK</label> 
+													<input type="checkbox" id="punt_to"><label for="punt_to">TO</label> 
+												</li>
+											</ul>
+										</div>
+
+										<div class="col-12">
+											<Label>Team 2</Label>
+											<select name="team_B_select" id="team_B_select">
+												<option value="">- Select Team 2 -</option>
+												{% for owner in owners %}
+												<option id="{{ owner.pk }}"value="{{ owner.pk }}">{{ owner }}</option>
+												{% endfor %}
+											</select>
+										</div>
+										
+										<div class="col-12">
+											<h3>Select Players</h3>
+										</div>
+										<div class="col-6 col-12-small" >
+											<ul class="alt" id="team_1_player_list">
+												
+											</ul>
+										</div>
+										<div class="col-6 col-12-small" >
+											<ul class="alt" id="team_2_player_list">
+
+											</ul>
+										</div>
+										<div class="col-12">
+											<ul class="actions">
+												<li><input id="submit_button" type="submit" value="Analyze" class="primary" /></li>
+												<li><input id="reset_button" type="reset" value="Reset" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+									
+							</section>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="/send_email/">{% csrf_token %}
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://twitter.com/HowDeepArshdeep" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.instagram.com/howdeeparshdeep/" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+									<li><a href="https://github.com/arshsidhu" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li> -->
+									<!-- <li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li> -->
+									<!-- <li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Arsh and Jo Co. All rights reserved</li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'js/jquery.min.js' %}"></script>
+			<script src="{% static 'js/browser.min.js' %}"></script>
+			<script src="{% static 'js/breakpoints.min.js' %}"></script>
+			<script src="{% static 'js/util.js' %}"></script>
+			<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+								
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$('select').on('change', function() {
+			$('option').prop('disabled', false);
+			$('select').each(function() {
+				var val = $(this).find(":selected").text()
+				$('select').not(this).find('option').filter(function() {
+					return $(this).text() === val;
+				}).prop('disabled', true);
+			});
+			});
+
+			$('#team_A_select').on('change', function() {
+				$('#team_1_player_list').html("");
+				val = $(this).find(":selected").text();
+
+				$.ajax({
+					type:"GET",
+					url:"/ajax/load_owner/",
+					data: { owner: val}
+				}).done(function(data){
+						var str = "";
+
+						for(let i = 0; i < data.players.length; i++){
+							str = "<li><input type='checkbox' id='2_" + data.players[i] + "'><label for='2_" + data.players[i] + "'>" + data.players[i] + "</label></li>";
+							$('#team_1_player_list').append(str);
+						}
+				});
+			});
+
+			$('#team_B_select').on('change', function() {
+				$('#team_2_player_list').html("");
+				val = $(this).find(":selected").text();
+
+				$.ajax({
+					type:"GET",
+					url:"/ajax/load_owner/",
+					data: { owner: val}
+				}).done(function(data){
+						var str = "";
+
+						for(let i = 0; i < data.players.length; i++){
+							str = "<li><input type='checkbox' id='2_" + data.players[i] + "'><label for='2_" + data.players[i] + "'>" + data.players[i] + "</label></li>";
+							$('#team_2_player_list').append(str);
+						}
+				});
+			});
+
+			$('#reset_button').on("click", function(){
+				$('#team_1_player_list').html("");
+				$('#team_2_player_list').html("");
+				$('option').prop('disabled', false);
+				$("html, body").animate({ scrollTop: 0 }, "slow");
+			})
+		});
+		
+
+	</script>
+</html>
