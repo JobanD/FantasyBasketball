@@ -32,9 +32,24 @@ AJAY = ('ajay sandhu', 9)
 
 
 
+# def home(request):
+# 	template = loader.get_template('teams/personal/index.html')
+# 	context = {}
+		
+# 	return HttpResponse(template.render(context, request))
+
 def home(request):
-	template = loader.get_template('teams/personal/index.html')
-	context = {}
+	
+	all_teams = dbInfo.teams.find({})
+
+	owners = []
+	for team in all_teams:
+		owners.append(team["_id"])
+
+	template = loader.get_template('teams/index.html')
+	context = {
+		'owners':owners
+	}
 		
 	return HttpResponse(template.render(context, request))
 

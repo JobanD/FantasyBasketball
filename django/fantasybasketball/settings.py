@@ -75,11 +75,8 @@ WSGI_APPLICATION = 'fantasybasketball.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'FantasyBasketball',
-        'HOST': "mongodb+srv://arshDB:arshDBpass@cluster0-hbjvs.mongodb.net/test?retryWrites=true&w=majority",
-        'USER': "arshDB",
-        'PASSWORD': 'arshDBpass'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 
@@ -130,5 +127,5 @@ STATIC_URL = '/statics/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics'),
-    '/Users/arsh/Documents/code/fantasyBall/django/teams/statics'
+    '/Users/joban/Desktop/FantasyBasketball-master/django/teams/statics'
 ]
